@@ -1,0 +1,13 @@
+package com.toons.RickAndMorty.model;
+
+enum Status {
+        DEAD("Dead"),
+        ALIVE("Alive"),
+        UNKNOWN("unknown");
+
+        private String value;
+
+        Status(String value) {
+            this.value = value;
+        }
+    }
