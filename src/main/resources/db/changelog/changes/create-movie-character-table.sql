@@ -1,5 +1,5 @@
-
-- changeSet <postgres>:<create-movie-character-table>
+--liquibase format sql
+--changeSet <postgres>:<create-movie-character-table>
 CREATE TABLE IF NOT EXISTS public.movie_character
 (
     id bigint NOT NULL,
@@ -9,4 +9,4 @@ CREATE TABLE IF NOT EXISTS public.movie_character
     CONSTRAINT movie_character_pk PRIMARY KEY (id)
 );
 
-rollback DROP TABLE movie_character;
+--rollback DROP TABLE movie_character;
