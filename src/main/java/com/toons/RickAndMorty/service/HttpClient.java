@@ -20,8 +20,7 @@ public class HttpClient {
     public <T> T get(String url, Class<T> clazz) {
         HttpGet request = new HttpGet(url);
         try (CloseableHttpResponse response = httpClient.execute(request)) {
-            // Get HttpResponse Status
-            System.out.println(response.getStatusLine().toString());
+                // Get HttpResponse Status
             return objectMapper.readValue(response.getEntity().getContent(), clazz);
         } catch (IOException e) {
             throw new RuntimeException("Cant fetch info in from url: " + url, e);

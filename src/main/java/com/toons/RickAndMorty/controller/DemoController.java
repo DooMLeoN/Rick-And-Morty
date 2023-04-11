@@ -1,6 +1,6 @@
 package com.toons.RickAndMorty.controller;
 
-import com.toons.RickAndMorty.service.HttpClient;
+import com.toons.RickAndMorty.service.MovieCharacterService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,15 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/demo")
 public class DemoController {
-    private final HttpClient httpClient;
+    private final MovieCharacterService characterService;
 
-    public DemoController(HttpClient httpClient) {
-        this.httpClient = httpClient;
+    public DemoController( MovieCharacterService characterService) {
+        this.characterService = characterService;
+
     }
 
     @GetMapping
     public String rubDemo() {
-
+        characterService.syncExternalCharacter();
         return "Dune!";
     }
 }
