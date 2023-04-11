@@ -1,6 +1,6 @@
 package com.toons.RickAndMorty.model;
 
-enum Gender {
+public enum Gender {
         FEMALE("Female"),
         MALE("Mail"),
         GENDERLESS("Genderless"),

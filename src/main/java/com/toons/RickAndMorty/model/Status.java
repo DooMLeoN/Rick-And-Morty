@@ -1,6 +1,6 @@
 package com.toons.RickAndMorty.model;
 
-enum Status {
+public enum Status {
         DEAD("Dead"),
         ALIVE("Alive"),
         UNKNOWN("unknown");

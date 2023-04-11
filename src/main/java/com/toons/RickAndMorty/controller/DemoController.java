@@ -1,6 +1,5 @@
 package com.toons.RickAndMorty.controller;
 
-import com.toons.RickAndMorty.dto.ApiResponseDto;
 import com.toons.RickAndMorty.service.HttpClient;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +18,7 @@ public class DemoController {
 
     @GetMapping
     public String rubDemo() {
-        ApiResponseDto apiResponseDto = httpClient.get("https://rickandmortyapi.com/api/character",
-                ApiResponseDto.class);
-        log.info("API response {} ", apiResponseDto);
+
         return "Dune!";
     }
 }
