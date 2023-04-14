@@ -12,8 +12,8 @@ public class MovieCharacterMapper {
         MovieCharacter movieCharacter = new MovieCharacter();
         movieCharacter.setExternalId(apiCharacterDto.getId());
         movieCharacter.setName(apiCharacterDto.getName());
-        movieCharacter.setGender(Gender.valueOf(apiCharacterDto.getGender()));
-        movieCharacter.setStatus(Status.valueOf(apiCharacterDto.getStatus()));
+        movieCharacter.setGender(Gender.valueOf(apiCharacterDto.getGender().toUpperCase()));
+        movieCharacter.setStatus(Status.valueOf(apiCharacterDto.getStatus().toUpperCase()));
         return movieCharacter;
     }
 }

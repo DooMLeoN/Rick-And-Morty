@@ -33,16 +33,16 @@ public class MovieCharacterServiceImpl implements MovieCharacterService {
     public void syncExternalCharacter() {
         ApiResponseDto apiResponseDto = httpClient.get("https://rickandmortyapi.com/api/character",
                 ApiResponseDto.class);
-        saveDtoToDB(apiResponseDto);
+        saveDtosToDB(apiResponseDto);
         while (apiResponseDto.getInfo().getNext() != null) {
             apiResponseDto = httpClient.get(apiResponseDto.getInfo().getNext(),
                     ApiResponseDto.class);
-            saveDtoToDB(apiResponseDto);
+            saveDtosToDB(apiResponseDto);
         }
     }
 
-    private void saveDtoToDB(ApiResponseDto apiResponseDto) {
-        Map<Long, ApiCharacterDto> externalDto = Arrays.stream(apiResponseDto.getResult())
+    private void saveDtosToDB(ApiResponseDto apiResponseDto) {
+        Map<Long, ApiCharacterDto> externalDto = Arrays.stream(apiResponseDto.getResults())
                 .collect(Collectors.toMap(ApiCharacterDto::getId, Function.identity()));
         Set<Long> externalIds = externalDto.keySet();
         List<MovieCharacter> existingCharacters = movieCharacterRepository.findAllByExternalIdIn(externalIds);
@@ -50,7 +50,7 @@ public class MovieCharacterServiceImpl implements MovieCharacterService {
                 .collect(Collectors.toMap(MovieCharacter::getExternalId, Function.identity()));
         Set<Long> existingIds = existingCharactersWithIds.keySet();
         externalIds.removeAll(existingIds);
-        List<MovieCharacter> charactersToSave = existingIds.stream()
+        List<MovieCharacter> charactersToSave = externalIds.stream()
                 .map(i -> mapper.parsMovieCharacterMapper(externalDto.get(i))).toList();
         movieCharacterRepository.saveAll(charactersToSave);
     }
