@@ -1,4 +1,4 @@
-package com.toons.RickAndMorty.dto;
+package com.toons.RickAndMorty.dto.external;
 
 import lombok.Data;
 
